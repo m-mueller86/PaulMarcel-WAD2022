@@ -4,15 +4,56 @@
         <meta charset="utf-8">
         <title>Super Name für Webapp</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     </head>
 
     <body>
-        <h1>Login-Screen</h1>
+        <div id="login">
+            <h1>Login-Screen</h1>
+        </div>
         <hr/>
-        <h1>Main-Screen</h1>
+        <header>
+            <h1>Wilkommen bei Food Hunter</h1>
+        </header>
+        <main>
+            <div id="sidenav">
+                <a href="#">Link</a>
+                <br/>
+                <a href="#">Link</a>
+                <br/>
+                <a href="#">Link</a>
+                <br/>
+            </div>
+            <div id="topnav">
+                <button>Logout</button>
+                <button>Add</button>
+            </div>
+            <div id="map">
+                <script src="js/main.js"></script>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; Copyright 2022 {App-Name}</p>
+        </footer>
         <hr/>
-        <h1>Add-Screen</h1>
+        <div id="add">
+            <h1>Add-Screen</h1>
+            <form action="/survey" method="GET">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+                <br/>
+                <label for="adress">Adresse: </label>
+                <input type="text" id="adress" name="adress" required>
+                <br/>
+                <input type="submit" value="Save">
+                <br/>
+                <button type="reset">Cancel</button>
+            </form> 
+        </div>
         <hr/>
-        <h1>Update/Delete-Screen</h1>
+        <div id="updateDelete">
+            <h1>Update/Delete-Screen</h1>
+        </div>
     </body>
 </html>
