@@ -6,11 +6,43 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+        <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
-        <div id="login">
-            <h1>Login-Screen</h1>
+        <div id="login"><div class="content">
+            <h2>Food Hunters</h2>
+        </div>
+
+            <div class="center">
+                <h1>Login</h1>
+                <form method="post">
+                    <div class="txt_field">
+
+                        <input type="text" required>
+
+                        <span></span>
+                        <label>Username</label>
+                    </div>
+                    <div class="txt_field">
+
+                        <input type="password" required>
+
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                    <div class="pass"><a href="Forgotpassword.html">Forgotten Password?</a>
+                    </div>
+                    <input type="submit" value="Login">
+                    <div class="signup_link">
+                        Not a member? <a href="RegistrationPage.html">Signup</a>
+
+
+                    </div>
+                </form>
+            </div>
+
         </div>
         <hr/>
         <header>
@@ -53,7 +85,15 @@
         </div>
         <hr/>
         <div id="updateDelete">
-            <h1>Update/Delete-Screen</h1>
+            <h1>Delete-Screen</h1>
+            <form action="/survey" method="GET">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="delete-name" required>
+                <br/>
+
+                <input type="submit" value="delete">
+                <br/>
+                <button type="reset">Cancel</button>
         </div>
     </body>
 </html>
