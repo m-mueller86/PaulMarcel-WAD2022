@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Super Name für Webapp</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-        <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
 
-    <body id="login">
-        <div class="content">
-            <h2>Food Hunters</h2>
-        </div>
+<head>
+    <meta charset="utf-8">
+    <title>Food Hunter</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-            <div class="center">
-                <h1>Login</h1>
-                <form method="post">
-                    <div class="txt_field">
+<body id="login">
+    <div class="content">
+        <h2>Food Hunters</h2>
+    </div>
 
-                        <input type="text" required>
-
-                        <span></span>
-                        <label>Username</label>
-                    </div>
-                    <div class="txt_field">
-
-                        <input type="password" required>
-
-                        <span></span>
-                        <label>Password</label>
-                    </div>
-
-                    <input type="submit" value="Login">
-
-                    </div>
-                </form>
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="text" required>
+                <label>Username</label>
             </div>
-
-        </div>
-        <hr/>
+            <div class="txt_field">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <hr/>
+    <div id="mainpage">
         <header>
-            <h1>Wilkommen bei Food Hunter</h1>
+            <h1>Willkommen bei Food Hunter</h1>
         </header>
+        <nav>
+            <a href="#login"><button class="nav-button">Logout</button></a>
+            <a href="#add"><button class="nav-button">Add</button></a>
+        </nav>
+        <aside>
+            <ul>
+                <li>Fairteieler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
+                <br>
+                <li>Fairteiler Olof-Palme-Zentrum<br>Demminer Straße 28<br>13355 Berlin</li>
+                <br>
+                <li>Fairteiler Ikarus<br>Stadtteilzentrum Karlshorst<br>Wandlitzstr. 13<br>10318 Berlin</li>
+            </ul>
+        </aside>
         <main>
-            <div id="sidenav">
-                <a href="#">Link</a>
-                <br/>
-                <a href="#">Link</a>
-                <br/>
-                <a href="#">Link</a>
-                <br/>
-            </div>
-            <div id="topnav">
-                <button>Logout</button>
-                <button>Add</button>
-            </div>
             <div id="map">
                 <script src="js/main.js"></script>
             </div>
         </main>
         <footer>
-            <p>&copy; Copyright 2022 {App-Name}</p>
+            <p>&copy; Copyright 2022 Food Hunter</p>
         </footer>
-        <hr/>
-        <div id="add">
-            <h1>Add-Screen</h1>
-            <form action="/survey" method="GET">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name" required>
-                <br/>
-                <label for="adress">Adresse: </label>
-                <input type="text" id="adress" name="adress" required>
-                <br/>
-                <input type="submit" value="Save">
-                <br/>
-                <button type="reset">Cancel</button>
-            </form> 
-        </div>
-        <hr/>
-        <div id="updateDelete">
-            <h1>Delete-Screen</h1>
-            <form action="/survey" method="GET">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="delete-name" required>
-                <br/>
+    </div>
+    <hr />
+    <div id="add">
+        <header>
+            <h1>Standort hinzufügen</h1>
+        </header>
+        <form action="/survey" method="GET">
+            <div class="txt_field">
+                <input type="text" required>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" required>
+                <label>Straße</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" required>
+                <label>PLZ</label>
+            </div>
+            <input type="submit" value="Save">
+            <input type="reset" value="Cancel">
+        </form>
+    </div>
+    <hr />
+    <div id="updateDelete">
+        <h1>Delete-Screen</h1>
+        <form action="/survey" method="GET">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="delete-name" required>
+            <br />
 
-                <input type="button" value="delete">
-                <br/>
-                <button type="reset">Cancel</button>
-        </div>
-    </body>
+            <input type="button" value="delete">
+            <br />
+            <button type="reset">Cancel</button>
+        </form>
+    </div>
+</body>
 </html>
