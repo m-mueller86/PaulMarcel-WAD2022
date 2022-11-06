@@ -19,6 +19,8 @@
   text-align: center;
   padding: 50px 0;
   border-bottom: 1px solid silver;
+  margin-left: 10px;
+
 }
 
 form {
@@ -29,7 +31,7 @@ form {
 form .txt_field {
   position: relative;
   border-bottom: 2px solid #adadad;
-  margin: 30px 0;
+  margin: 30px 600px;
 }
 
 .txt_field input {
@@ -96,6 +98,7 @@ input[type="submit"] {
   font-weight: 700;
   cursor: pointer;
   outline: none;
+  margin: 30px 600px;
 }
 
 input[type="reset"] {
@@ -134,21 +137,7 @@ input[type="reset"]:hover {
   transition: .5s;
 }
 
-.signup_link {
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: #666666;
-}
 
-.signup_link a {
-  color: #2691d9;
-  text-decoration: none;
-}
-
-.signup_link a:hover {
-  text-decoration: underline;
-}
 
 .logo container h2 span {
   font-weight: 800;
@@ -158,9 +147,9 @@ h2 {
   margin: 50px 0 20px 880px;
   font-size: 100px;
   font-weight: 600;
-  color: black;
   position: relative;
-  left: -2.4em;
+  left: -4em;
+ bottom: 50px;
   color: white;
   font-family: 'Anton', sans-serif;
 }
@@ -237,7 +226,9 @@ footer {
 }
 
 /* Add-Screen */
-
+#login input[type=submit] {
+  margin-left: 37%;
+}
 #add input[type=submit] {
   margin-left: 25%;
 }
