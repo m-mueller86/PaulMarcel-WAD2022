@@ -13,14 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body id="login">
-
+<body>
+    <div id="login">
         <header>
-        <h2>Food Hunters</h2>
+            <h2>Food Hunters</h2>
         </header>
-
-    <div class="center">
-        <h1>Login</h1>
         <form method="post">
             <div class="txt_field">
                 <input type="text" required>
@@ -33,10 +30,10 @@
             <input type="submit" value="Login">
         </form>
     </div>
-    <hr/>
+    <hr />
     <div id="mainpage">
         <header>
-            <h1>Willkommen bei Food Hunter</h1>
+            <h1>Willkommen bei Food Hunters</h1>
         </header>
         <nav>
             <a href="#login"><button class="nav-button">Logout</button></a>
@@ -44,7 +41,7 @@
         </nav>
         <aside>
             <ul>
-                <li>Fairteieler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
+                <li>Fairteiler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
                 <br>
                 <li>Fairteiler Olof-Palme-Zentrum<br>Demminer Straße 28<br>13355 Berlin</li>
                 <br>
@@ -57,7 +54,7 @@
             </div>
         </main>
         <footer>
-            <p>&copy; Copyright 2022 Food Hunter</p>
+            <p>&copy; Copyright 2022 Food Hunters</p>
         </footer>
     </div>
     <hr />
@@ -65,7 +62,7 @@
         <header>
             <h1>Standort hinzufügen</h1>
         </header>
-        <form action="/survey" method="GET">
+        <form action="/survey" method="post">
             <div class="txt_field">
                 <input type="text" required>
                 <label>Name</label>
@@ -83,17 +80,28 @@
         </form>
     </div>
     <hr />
-    <div id="updateDelete">
-        <h1>Delete-Screen</h1>
-        <form action="/survey" method="GET">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="delete-name" required>
-            <br />
-
-            <input type="button" value="delete">
-            <br />
-            <button type="reset">Cancel</button>
+    <div>
+        <header>
+            <h1>Update/Delete</h1>
+        </header>
+        <form action="/survey" method="post">
+            <div class="txt_field">
+                <input type="text" value="Fairteiler Gneisenaustraße" required>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" value="Gneisenaustr. 12" required>
+                <label>Straße</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" value="10961" required>
+                <label>PLZ</label>
+            </div>
+            <span id="update"><input type="submit" value="Update"></span>
+            <span id="delete"><input type="submit" value="Delete"></span>
+            <input type="reset" value="Cancel">
         </form>
     </div>
 </body>
+
 </html>
