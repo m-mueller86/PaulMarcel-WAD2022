@@ -8,16 +8,19 @@
 header {
   background: linear-gradient(rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 0.2)),
-       url(https://www.egofm.de/content/cache/blog/5806/230/7837ded24839fdf3/w822_markus-spiske-vyho3nnk8g8-unsplash_c_01.jpg) no-repeat;
+    url(https://www.egofm.de/content/cache/blog/5806/230/7837ded24839fdf3/w822_markus-spiske-vyho3nnk8g8-unsplash_c_01.jpg) no-repeat;
   background-size: cover;
   text-align: center;
   color: white;
-  height: 20%;
+  height: 30%;
   font-size: 40px;
   padding: 40px;
 }
 
-#add, #login, #updateDelete, footer{
+#add,
+#login,
+#updateDelete,
+footer {
   background-color: rgb(223, 227, 240);
 }
 
@@ -107,6 +110,15 @@ h2 {
   font-family: 'Anton', sans-serif;
 }
 
+/* Login-Screen */
+
+#login {
+  height: 930px;
+}
+
+#loginForm {
+  margin-top: 150px;
+}
 
 /* Main-Screen */
 
@@ -131,7 +143,7 @@ nav {
   background-color: rgb(15, 122, 122);
   color: white;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .nav-button:hover {
@@ -145,10 +157,6 @@ aside {
   color: white;
   position: absolute;
   padding-left: 20px;
-}
-
-footer {
-  text-align: center; 
 }
 
 /* Add-Screen */
@@ -169,4 +177,16 @@ footer {
 
 #delete input[type=submit] {
   background-color: #d3373e;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  color: white;
+  background-color: rgb(15, 122, 122);
+}
+
+#impressum {
+  color: white;
 }

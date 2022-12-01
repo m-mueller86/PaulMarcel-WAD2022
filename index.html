@@ -10,98 +10,102 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <div id="login">
-        <header>
-            <h2>Food Hunters</h2>
-        </header>
-        <form method="post">
-            <div class="txt_field">
-                <input type="text" required>
-                <label>Username</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" required>
-                <label>Password</label>
-            </div>
-            <input type="submit" value="Login">
-        </form>
-    </div>
-    <hr />
-    <div id="mainpage">
-        <header>
-            <h1>Willkommen bei Food Hunters</h1>
-        </header>
-        <nav>
-            <a href="#login"><button class="nav-button">Logout</button></a>
-            <a href="#add"><button class="nav-button">Add</button></a>
-        </nav>
-        <aside>
-            <ul>
-                <li>Fairteiler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
-                <br>
-                <li>Fairteiler Olof-Palme-Zentrum<br>Demminer Straße 28<br>13355 Berlin</li>
-                <br>
-                <li>Fairteiler Ikarus<br>Stadtteilzentrum Karlshorst<br>Wandlitzstr. 13<br>10318 Berlin</li>
-            </ul>
-        </aside>
-        <main>
-            <div id="map">
-                <script src="js/main.js"></script>
-            </div>
-        </main>
-        <footer>
-            <p>&copy; Copyright 2022 Food Hunters</p>
-        </footer>
-    </div>
-    <hr />
-    <div id="add">
-        <header>
-            <h1>Standort hinzufügen</h1>
-        </header>
-        <form action="/survey" method="post">
-            <div class="txt_field">
-                <input type="text" required>
-                <label>Name</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" required>
-                <label>Straße</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" required>
-                <label>PLZ</label>
-            </div>
-            <input type="submit" value="Save">
-            <input type="reset" value="Cancel">
-        </form>
-    </div>
-    <hr />
     <div>
-        <header>
-            <h1>Update/Delete</h1>
-        </header>
-        <form action="/survey" method="post">
-            <div class="txt_field">
-                <input type="text" value="Fairteiler Gneisenaustraße" required>
-                <label>Name</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" value="Gneisenaustr. 12" required>
-                <label>Straße</label>
-            </div>
-            <div class="txt_field">
-                <input type="text" value="10961" required>
-                <label>PLZ</label>
-            </div>
-            <span id="update"><input type="submit" value="Update"></span>
-            <span id="delete"><input type="submit" value="Delete"></span>
-            <input type="reset" value="Cancel">
-        </form>
+        <div id="login" class="login">
+            <header class="login">
+                <h2>Food Hunters</h2>
+            </header>
+            <form id="loginForm" method="post">
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+        <div id="mainpage">
+            <header>
+                <h1>Willkommen bei Food Hunters</h1>
+            </header>
+            <nav>
+                <a href="#login"><button class="nav-button">Logout</button></a>
+                <a href="#add"><button class="nav-button">Add</button></a>
+            </nav>
+            <aside>
+                <ul>
+                    <li>Fairteiler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
+                    <br>
+                    <li>Fairteiler Olof-Palme-Zentrum<br>Demminer Straße 28<br>13355 Berlin</li>
+                    <br>
+                    <li>Fairteiler Ikarus<br>Stadtteilzentrum Karlshorst<br>Wandlitzstr. 13<br>10318 Berlin</li>
+                </ul>
+            </aside>
+            <main>
+                <div id="map">
+                    <script src="js/map.js"></script>
+                </div>
+            </main>
+        </div>
+
+        <div id="add">
+            <header>
+                <h1>Standort hinzufügen</h1>
+            </header>
+            <form action="/survey" method="post">
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Name</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>Straße</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" required>
+                    <label>PLZ</label>
+                </div>
+                <input type="submit" value="Save">
+                <input type="reset" value="Cancel">
+            </form>
+        </div>
+
+        <div id="updateDelete">
+            <header>
+                <h1>Update/Delete</h1>
+            </header>
+            <form action="/survey" method="post">
+                <div class="txt_field">
+                    <input type="text" value="Fairteiler Gneisenaustraße" required>
+                    <label>Name</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" value="Gneisenaustr. 12" required>
+                    <label>Straße</label>
+                </div>
+                <div class="txt_field">
+                    <input type="text" value="10961" required>
+                    <label>PLZ</label>
+                </div>
+                <span id="update"><input type="submit" value="Update"></span>
+                <span id="delete"><input type="submit" value="Delete"></span>
+                <input type="reset" value="Cancel">
+            </form>
+        </div>
     </div>
+    <footer>
+        <a href="" id="impressum"><p>Impressum</p></a>
+        <p>&copy; Copyright 2022 Food Hunters</p>
+    </footer>
 </body>
 
 </html>
