@@ -15,3 +15,17 @@ var fairteiler3 = L.marker([52.481132, 13.5226441]).addTo(map);
 fairteiler1.bindPopup("<b>Fairteiler</b><br>Mehrgenerationenhaus Gneisenaustrße");
 fairteiler2.bindPopup("<b>Fairteiler</b><br>Olof-Palme-Zentrum");
 fairteiler3.bindPopup("<b>Fairteiler</b><br>Ikarus Stadtteilzentrum Karlshorst");
+
+
+function getInfo(){
+    var username = document.getElementById("username").value
+    var password = document.getElementById("password ").value
+
+   for(i = 0; i < objPeople.length; i++) {
+       if(username == objPeople[i].username && password == objPeople[i].password){
+           console.log("Hallo " + username)
+           return // sobald
+       }
+   }
+   console.log("falsches Passwort")
+}

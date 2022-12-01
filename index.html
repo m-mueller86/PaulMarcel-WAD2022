@@ -11,6 +11,7 @@
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = main.js></script>
 </head>
 
 <body>
@@ -18,18 +19,23 @@
         <header>
             <h2>Food Hunters</h2>
         </header>
-        <form method="post">
+        <form method="post" name="form" onsubmit="return validated()">
             <div class="txt_field">
-                <input type="text" required>
+                <input autocomplete="off" type="text" required>
                 <label>Username</label>
+                <div id="username"></div>
+                <div id="username_error">Bitte geben Sie Ihren Usernamen ein</div>
             </div>
             <div class="txt_field">
-                <input type="password" required>
+                <input autocomplete="off"  type="password" required>
                 <label>Password</label>
+                <div id="password"></div>
+                <div id="pass_error">Bitte geben Sie Ihr Password ein</div>
             </div>
             <input type="submit" value="Login">
         </form>
     </div>
+    <script src="valid.js"></script>
     <hr />
     <div id="mainpage">
         <header>
