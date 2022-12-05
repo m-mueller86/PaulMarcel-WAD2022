@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+
 }
 
 header {
@@ -15,6 +16,11 @@ header {
   height: 30%;
   font-size: 40px;
   padding: 40px;
+}
+body{
+  background: linear-gradient(rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0.2)),
+  url(https://www.egofm.de/content/cache/blog/5806/230/7837ded24839fdf3/w822_markus-spiske-vyho3nnk8g8-unsplash_c_01.jpg) no-repeat;
 }
 
 #add,
