@@ -1,6 +1,7 @@
 window.onload = showOnlyLogin;
 
 function showOnlyLogin() {
+    document.getElementById("impressum-page").style.display = "none";
     document.getElementById("mainpage").style.display = "none";
     document.getElementById("add").style.display = "none";
     document.getElementById("updateDelete").style.display = "none";
@@ -8,10 +9,6 @@ function showOnlyLogin() {
 
 const loginForm = document.getElementById("login-form");
 const logoutButton = document.getElementById("logout-button");
-
-
-
-
 const addForm = document.getElementById("add-form");
 const addButton = document.getElementById("add-button");
 const cancelAdd = document.getElementById("cancel-add");
@@ -19,6 +16,8 @@ const cancelUpdate = document.getElementById("cancel-update");
 const addLocation = document.getElementById("add-location");
 const deleteLocation = document.getElementById("update-delete-form");
 const updateLocation = document.getElementById("update-delete-form");
+const impressum = document.getElementById("impressum");
+const back = document.getElementById("back");
 
 
 // Login
@@ -60,6 +59,8 @@ function loginAsGuest() {
 logoutButton.addEventListener("click", (e) => {
     document.getElementById("mainpage").style.display = "none";
     document.getElementById("login").style.display = "block";
+    document.getElementById("password-field").value = "";
+    document.getElementById("username-field").value = "";
 });
 
 // Adding location
@@ -184,6 +185,20 @@ updateLocation.addEventListener("submit", (e) => {
     if(index != -1) {
 
     }
+})
+
+// Impressum
+impressum.addEventListener("click", (e) => {
+    document.getElementById("mainpage").style.display = "none";
+    document.getElementById("add").style.display = "none";
+    document.getElementById("updateDelete").style.display = "none";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("impressum-page").style.display = "block";
+})
+
+back.addEventListener("click", (e) => {
+    document.getElementById("impressum-page").style.display = "none";
+    document.getElementById("login").style.display = "block";
 })
 
 // array of locations
