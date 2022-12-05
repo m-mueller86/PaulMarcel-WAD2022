@@ -42,7 +42,10 @@ function loginAsGuest() {
 
 logoutButton.addEventListener("click", (e) => {
     document.getElementById("mainpage").style.display = "none";
+    document.getElementById("username-field").value = '';
+    document.getElementById("password-field").value = '';
     document.getElementById("login").style.display = "block";
+
 });
 
 // Map with coordinates for start view
