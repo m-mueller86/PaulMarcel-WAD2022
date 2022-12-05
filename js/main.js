@@ -32,7 +32,9 @@ loginForm.addEventListener("submit", (e) => {
     } else if (username === "guest" && password === "password") {
         loginAsGuest();
     } else {
-        alert("Wrong password or username!")
+        alert("Wrong password or username!");
+        document.getElementById("password-field").value = "";
+        document.getElementById("username-field").value = "";
     }
 });
 
