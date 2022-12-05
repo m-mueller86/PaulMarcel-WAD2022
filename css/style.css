@@ -256,3 +256,13 @@ footer {
 #impressum {
   color: white;
 }
+
+/* Impressum */
+
+#impressum {
+  cursor: pointer;
+}
+
+#back {
+  cursor: pointer;
+}
