@@ -15,97 +15,92 @@
 </head>
 
 <body>
-    <div>
-        <div id="login" class="login">
-            <header class="login">
-                <h2>Food Hunters</h2>
-            </header>
-            <form id="login-form">
-                <div class="txt_field">
-                    <input type="text" id="username-field" name="username" required>
-                    <label>Username</label>
-                </div>
-                <div class="txt_field">
-                    <input type="password" id="password-field" name="password" required>
+    <div id="login">
+        <header class="login">
+            <h2>Food Hunters</h2>
+        </header>
+        <form id="login-form">
+            <div class="txt_field">
+                <input type="text" name="username" id="username-field" required>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" id="password-field" required>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
-                    <label>Password</label>
+    <div id="mainpage">
+        <header>
+            <h1 id="welcome-message"></h1>
+        </header>
+        <nav>
+            <button id="logout-button" class="nav-button">Logout</button>
+            <button id="add-button" class="nav-button">Add</button>
+        </nav>
+        <aside>
+            <ul id="location-list">
+            </ul>
+        </aside>
+        <main>
+            <div id="map"></div>
+        </main>
+    </div>
 
-                </div>
-                <input type="submit" value="Login">
-            </form>
-        </div>
+    <div id="add">
+        <header>
+            <h1>Add new location</h1>
+        </header>
+        <form id="add-form">
+            <div class="txt_field">
+                <input type="text" name="name" required>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input id="address" type="text" name="address" required>
+                <label>Straße</label>
+            </div>
+            <div class="txt_field">
+                <input id="number" type="text" name="number" required>
+                <label>Hausnr.</label>
+            </div>
+            <div class="txt_field">
+                <input id="postcode" type="text" name="postcode" required>
+                <label>PLZ</label>
+            </div>
+            <input type="submit" value="Save">
+            <input id="cancel-add" type="reset" value="Cancel">
+        </form>
+        <div id="result"></div>
+    </div>
 
-        <div id="mainpage">
-            <header>
-               <h1 id="welcome-message"></h1>
-            </header>
-            <nav>
-                <button id="logout-button" class="nav-button">Logout</button>
-                <button id="add-button" class="nav-button">Add</button>
-            </nav>
-            <aside>
-                <ul>
-                    <li>Fairteiler Gneisenaustraße<br>Gneisenaustr. 12<br>10961 Berlin</li>
-                    <br>
-                    <li>Fairteiler Olof-Palme-Zentrum<br>Demminer Straße 28<br>13355 Berlin</li>
-                    <br>
-                    <li>Fairteiler Ikarus<br>Stadtteilzentrum Karlshorst<br>Wandlitzstr. 13<br>10318 Berlin</li>
-                </ul>
-            </aside>
-            <main>
-                <div id="map">
-                    <script src="js/map.js"></script>
-                </div>
-            </main>
-        </div>
-
-        <div id="add">
-            <header>
-                <h1>Standort hinzufügen</h1>
-            </header>
-            <form action="/survey" method="post">
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Name</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>Straße</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <label>PLZ</label>
-                </div>
-                <input type="submit" value="Save">
-                <input type="reset" value="Cancel">
-            </form>
-        </div>
-
-        <div id="updateDelete">
-            <header>
-                <h1>Update/Delete</h1>
-            </header>
-            <form action="/survey" method="post">
-                <div class="txt_field">
-                    <input type="text" value="Fairteiler Gneisenaustraße" required>
-                    <label>Name</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" value="Gneisenaustr. 12" required>
-                    <label>Straße</label>
-                </div>
-                <div class="txt_field">
-                    <input type="text" value="10961" required>
-                    <label>PLZ</label>
-                </div>
-                <span id="update"><input type="submit" value="Update"></span>
-                <span id="delete"><input type="submit" value="Delete"></span>
-                <input type="reset" value="Cancel">
-            </form>
-        </div>
+    <div id="updateDelete">
+        <header>
+            <h1>Update/Delete</h1>
+        </header>
+        <form id="update-delete-form">
+            <div id="locationname" class="txt_field">
+            </div>
+            <div id="street" class="txt_field">
+                <label>Straße</label>
+            </div>
+            <div id="housenumber" class="txt_field">
+                <label>Hausnr.</label>
+            </div>
+            <div id="plz" class="txt_field">
+                <label>PLZ</label>
+            </div>
+            <input id="update" type="submit" value="Update">
+            <input id="delete" type="reset" value="Delete">
+            <input id="cancel-update" type="cancel" value="Cancel">
+        </form>
     </div>
     <footer>
-        <a href="" id="impressum"><p>Impressum</p></a>
+        <a href="" id="impressum">
+            <p>Impressum</p>
+        </a>
         <p>&copy; Copyright 2022 Food Hunters</p>
     </footer>
 </body>

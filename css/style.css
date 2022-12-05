@@ -75,6 +75,19 @@ input[type="submit"] {
   outline: none;
 }
 
+#login-form-submit {
+  width: 25%;
+  height: 50px;
+  border: 1px solid;
+  background: rgb(15, 122, 122);
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
 input[type="reset"] {
   width: 25%;
   height: 50px;
@@ -88,12 +101,36 @@ input[type="reset"] {
   outline: none;
 }
 
+input[type="cancel"] {
+  width: 25%;
+  height: 50px;
+  border: 1px solid;
+  background: rgb(15, 122, 122);
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+}
+
 input[type="submit"]:hover {
   border-color: rgb(15, 122, 122);
   transition: .5s;
 }
 
+#login-form-submit:hover {
+  border-color: rgb(15, 122, 122);
+  transition: .5s;
+}
+
 input[type="reset"]:hover {
+  border-color: rgb(15, 122, 122);
+  transition: .5s;
+}
+
+input[type="cancel"]:hover {
   border-color: rgb(15, 122, 122);
   transition: .5s;
 }
@@ -116,14 +153,14 @@ h2 {
   height: 930px;
 }
 
-#loginForm {
+#login-form {
   margin-top: 150px;
 }
 
 /* Main-Screen */
 
 #map {
-  height: 620px;
+  height: 655px;
   width: 1540px;
   max-width: 100%;
   max-height: 100%;
@@ -150,8 +187,12 @@ nav {
   background-color: rgb(10, 63, 63);
 }
 
+li {
+  cursor: pointer;
+}
+
 aside {
-  height: 620px;
+  height: 655px;
   width: 300px;
   background-color: rgb(15, 122, 122);
   color: white;
@@ -169,14 +210,33 @@ aside {
   margin-left: 25%;
 }
 
-/* Update-Delete */
-
-#update input[type=submit] {
-  margin-left: 13%;
+#add {
+  height: 930px;
 }
 
-#delete input[type=submit] {
+#add-form {
+  margin-top: 100px;
+}
+
+/* Update-Delete */
+
+#update {
+  margin-left: 38%;
+  margin-bottom: 10px;
+}
+
+#delete {
   background-color: #d3373e;
+  margin-left: 38%;
+  margin-bottom: 10px;
+}
+
+#cancel-update {
+  margin-left: 38%;
+}
+
+#updateDelete {
+  height: 930px;
 }
 
 /* Footer */
@@ -184,7 +244,7 @@ aside {
 footer {
   text-align: center;
   color: white;
-  background-color: rgb(15, 122, 122);
+  background-color: rgb(10, 63, 63);
 }
 
 #impressum {
