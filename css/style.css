@@ -150,7 +150,7 @@ h2 {
 /* Login-Screen */
 
 #login {
-  height: 893px;
+  height: 906px;
 }
 
 #login-form {
@@ -160,7 +160,7 @@ h2 {
 /* Main-Screen */
 
 #map {
-  height: 617px;
+  height: 629px;
   width: 1540px;
   max-width: 100%;
   max-height: 100%;
@@ -192,7 +192,7 @@ li {
 }
 
 aside {
-  height: 617px;
+  height: 629px;
   width: 300px;
   background-color: rgb(15, 122, 122);
   color: white;
@@ -211,7 +211,7 @@ aside {
 }
 
 #add {
-  height: 893px;
+  height: 905px;
 }
 
 #add-form {
@@ -236,7 +236,7 @@ aside {
 }
 
 #updateDelete {
-  height: 893px;
+  height: 905px;
 }
 
 /* Footer */
@@ -258,7 +258,7 @@ footer {
 
 }
 #impressum-page{
-  height: 876px;
+  height: 905px;
 }
 
 
