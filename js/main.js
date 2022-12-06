@@ -295,5 +295,5 @@ function noLocalStorage() {
     addToLocations("52.4918007", "13.3917255", "Fairteiler Mehrgenerationenhaus Gneisenaustraße", "Gneisenaustraße", "12", "10961");
     addToLocations("52.5418451", "13.3962424", "Fairteiler Olof-Palme-Zentrum", "Demminer Straße", "28", "13355");
     addToLocations("52.481132", "13.5226441", "Fairteiler Ikarus Stadtteilzentrum Karlshorst", "Wandlitzstr.", "13", "10318");
-    addToLocations("52.5376465", "13.2250511", "Fairteiler Stadtteilbüro Siemensstadt", "Wattstr.", "13", "13629");
+    addToLocations("52.5363004", "13.2662454", "Fairteiler Stadtteilbüro Siemensstadt", "Wattstr.", "13", "13629");
 }
