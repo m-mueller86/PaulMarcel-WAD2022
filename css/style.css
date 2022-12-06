@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-
 }
 
 header {
@@ -16,11 +15,6 @@ header {
   height: 30%;
   font-size: 40px;
   padding: 40px;
-}
-body{
-  background: linear-gradient(rgba(0, 0, 0, 0.3),
-  rgba(0, 0, 0, 0.2)),
-  url(https://www.egofm.de/content/cache/blog/5806/230/7837ded24839fdf3/w822_markus-spiske-vyho3nnk8g8-unsplash_c_01.jpg) no-repeat;
 }
 
 #add,
@@ -92,7 +86,6 @@ input[type="submit"] {
   font-weight: 700;
   cursor: pointer;
   outline: none;
-
 }
 
 input[type="reset"] {
@@ -157,8 +150,7 @@ h2 {
 /* Login-Screen */
 
 #login {
-  height: 930px;
-
+  height: 893px;
 }
 
 #login-form {
@@ -168,7 +160,7 @@ h2 {
 /* Main-Screen */
 
 #map {
-  height: 655px;
+  height: 617px;
   width: 1540px;
   max-width: 100%;
   max-height: 100%;
@@ -200,7 +192,7 @@ li {
 }
 
 aside {
-  height: 655px;
+  height: 617px;
   width: 300px;
   background-color: rgb(15, 122, 122);
   color: white;
@@ -219,7 +211,7 @@ aside {
 }
 
 #add {
-  height: 930px;
+  height: 893px;
 }
 
 #add-form {
@@ -244,7 +236,7 @@ aside {
 }
 
 #updateDelete {
-  height: 930px;
+  height: 893px;
 }
 
 /* Footer */
