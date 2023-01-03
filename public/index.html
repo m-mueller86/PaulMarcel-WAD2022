@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Food Hunter</title>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https:://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="./javascripts/main.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div id="login">
+        <header class="login">
+            <h2>Food Hunters</h2>
+        </header>
+        <form id="login-form">
+            <div class="txt_field">
+                <input type="text" name="username" id="username-field" required>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" name="password" id="password-field" required>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div id="mainpage">
+        <header>
+            <h1 id="welcome-message"></h1>
+        </header>
+        <nav>
+            <button id="logout-button" class="nav-button">Logout</button>
+            <button id="add-button" class="nav-button">Add</button>
+        </nav>
+        <aside>
+            <ul id="location-list">
+            </ul>
+        </aside>
+        <main>
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <div id="add">
+        <header>
+            <h1>Add new location</h1>
+        </header>
+        <form id="add-form">
+            <div class="txt_field">
+                <input type="text" name="name" required>
+                <label>Name</label>
+            </div>
+            <div class="txt_field">
+                <input id="address" type="text" name="address" required>
+                <label>Straße</label>
+            </div>
+            <div class="txt_field">
+                <input id="number" type="text" name="number" required>
+                <label>Hausnr.</label>
+            </div>
+            <div class="txt_field">
+                <input id="postcode" type="text" name="postcode" required>
+                <label>PLZ</label>
+            </div>
+            <input type="submit" value="Save">
+            <input id="cancel-add" type="reset" value="Cancel">
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <div id="updateDelete">
+        <header>
+            <h1>Update/Delete</h1>
+        </header>
+        <form id="update-delete-form">
+            <div id="locationname" class="txt_field">
+            </div>
+            <div id="street" class="txt_field">
+                <label>Straße</label>
+            </div>
+            <div id="housenumber" class="txt_field">
+                <label>Hausnr.</label>
+            </div>
+            <div id="plz" class="txt_field">
+                <label>PLZ</label>
+            </div>
+            <input id="update" type="submit" value="Update">
+            <input id="delete" type="reset" value="Delete">
+            <input id="cancel-update" type="cancel" value="Cancel">
+        </form>
+    </div>
+
+    <div id="impressum-page">
+        <header>
+            <h2>Impressum</h2>
+        </header>
+
+        <p1> FoodHunter GmbH
+            <br>
+            Aristotelessteig 4.
+            <br>
+            10318 Berlin
+            <br>
+            DEUTSCHLAND
+            <br>
+            <br>
+            Geschäftsführer: Paul Graetz
+            <br>
+            Registergericht: Amtsgericht Mitte
+            <br>
+            Handelsregisternummer: HRB 15432 B
+            <br>
+            Umsatzsteueridentifikationsnummer: DE100082381
+            <br>
+            <br>
+            <br>
+            Für allgemeine Anfragen kontaktieren Sie uns über die E-Mail-Adresse impressum@foodhunter.de
+            <br>
+            Telefon: Montag bis Freitag 8:00 – 22:00 Uhr, Samstag/Sonntag/Feiertage 9:00 – 20:00 Uhr unter 033203 851
+            021 (aus dem Ausland +49 33203 851 021)
+        </p1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p id="back">back</p>
+    </div>
+
+    <footer>
+        <p id="impressum">Impressum</p>
+        <p>&copy; Copyright 2022 Food Hunters</p>
+    </footer>
+</body>
+
+</html>
