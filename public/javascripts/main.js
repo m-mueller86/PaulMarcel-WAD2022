@@ -1,17 +1,5 @@
 window.onload = showOnlyLogin;
 
-var map = L.map('map');
-
-function initializeMap() {
-    // Map with coordinates for start view
-    map.setView([52.51303, 13.4144269], 12);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-}
-
 function showOnlyLogin() {
     document.getElementById("impressum-page").style.display = "none";
     document.getElementById("mainpage").style.display = "none";
@@ -27,6 +15,19 @@ function showOnlyLogin() {
         })
     }
 }
+
+var map = L.map('map');
+
+function initializeMap() {
+    // Map with coordinates for start view
+    map.setView([52.51303, 13.4144269], 12);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+}
+
 
 function getLongitudeLatitude(locationName, locationNumber, locationAddress, locationPostcode) {
     let httpRequest = new XMLHttpRequest();
@@ -60,25 +61,30 @@ const updateLocation = document.getElementById("update-delete-form");
 const impressum = document.getElementById("impressum");
 const back = document.getElementById("back");
 
-
-// Login
 loginForm.addEventListener("submit", (e) => {
-    const username = loginForm.username.value;
-    const password = loginForm.password.value;
 
     e.preventDefault();
 
-    if (username === "admina" && password === "password") {
-        loginAsAdmina();
-    } else if (username === "guest" && password === "password") {
-        loginAsGuest();
-    } else {
-        alert("Wrong password or username!");
-        document.getElementById("password-field").value = "";
-        document.getElementById("username-field").value = "";
-    }
-});
+    const prePayload = new FormData(loginForm);
+    const payload = new URLSearchParams(prePayload);
 
+    const result = fetch("/users", {
+        method: "POST",
+        body: payload,
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.isAdmin) {
+            loginAsAdmina();
+        } else if (!data.isAdmin) {
+            loginAsGuest();
+        } else if (!data) {
+            alert("ALLLLLLAAAARRRRRMMMMM");
+        }
+    })
+    .catch(err => console.log(err));
+
+});
 
 function loginAsAdmina() {
     document.getElementById("mainpage").style.display = "block";
