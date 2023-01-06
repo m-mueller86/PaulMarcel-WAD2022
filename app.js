@@ -22,7 +22,7 @@ app.post("/users", function(req, res) {
             db.collection("users").findOne({userId: username},
                 function(err, result) {
                     if (err) throw err;
-                    if (result && password === result.password) {
+                    if (result !== null && password === result.password) {
                         delete result.password;
                         res.status(200).send(result);
                     } else {

@@ -40,7 +40,7 @@ function getLongitudeLatitude(locationName, locationNumber, locationAddress, loc
         let data = this.response;
         let obj = JSON.parse(data);
 
-        if (this.status = 200 && obj[0] != undefined) {
+        if (this.status === 200 && obj[0] != undefined) {
             addToLocations(obj[0]["lat"], obj[0]["lon"], locationName, locationAddress, locationNumber, locationPostcode);
         } else {
             alert("Please check the address!")
@@ -72,15 +72,21 @@ loginForm.addEventListener("submit", (e) => {
         method: "POST",
         body: payload,
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.isAdmin) {
-            loginAsAdmina();
-        } else if (!data.isAdmin) {
-            loginAsGuest();
-        } else if (!data) {
-            alert("ALLLLLLAAAARRRRRMMMMM");
+    .then(res => {
+        if(res.status === 200) {
+            return res.json();
+        } else if (res.status === 401) {
+            alert("Incorrect username or password!");
+            loginForm.username.value = "";
+            loginForm.password.value = "";
         }
+    })
+    .then(data => {
+        if(data.isAdmin === "true") {
+            loginAsAdmina();
+        } else if (data.isAdmin === "false") {
+            loginAsGuest();
+        }      
     })
     .catch(err => console.log(err));
 
