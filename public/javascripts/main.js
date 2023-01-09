@@ -208,28 +208,26 @@ function addEventListenerToLocationsElements() {
         }));
 
 }
-
 deleteLocation.addEventListener("reset", (e) => {
-    const name = deleteLocation.name.value;
 
-    let index = locations.findIndex(element => element.name == name);
-
-    if (index != -1) {
-        locations[index].marker.remove();
-        locations.splice(index, 1);
-        localStorage.setItem('locations', JSON.stringify(locationsWithoutMarker()));
-        document.getElementById("location-list").innerHTML = "";
-        document.getElementById("mainpage").style.display = "block";
-        document.getElementById("updateDelete").style.display = "none";
-
-        locations.forEach(location => {
-            document.getElementById("location-list").innerHTML += `<li id="${location.name}">` + location.name + "</li><br>";
-        });
-
-        addEventListenerToLocationsElements();
-    } else {
-        alert("Location does not exist!");
+    const id = {
+        id: deleteLocation.locationId.value
     }
+
+    fetch("/susLocs/" + id, {
+        method: "DELETE",
+        body: new URLSearchParams(id)
+    })
+        .then(res => {
+            if (res.status === 204) {
+                setTimeout(refreshMap, 100);
+
+                document.getElementById("mainpage").style.display = "block";
+                document.getElementById("updateDelete").style.display = "none";
+            } else if (res.status === 404) {
+                alert("Invalid ID!");
+            }
+        })
 });
 
 updateLocation.addEventListener("submit", (e) => {
