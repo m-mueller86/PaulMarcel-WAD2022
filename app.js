@@ -90,5 +90,33 @@ app.delete("/susLocs/:id", function (req, res) {
                 });
         });
 });
+app.put("/susLocs/:id", function (req, res) {
+    let query = { _id: new ObjectId(req.body.id) }
+
+    let replacement = {
+        lat: req.body.lat,
+        lon: req.body.lon,
+        name: req.body.name,
+        address: req.body.address,
+        number: req.body.number,
+        postcode: req.body.postcode,
+    }
+
+    MongoClient.connect(url,
+        function (err, client) {
+            if (err) throw err;
+            let db = client.db("susLocDB");
+            db.collection("locations").replaceOne(query, replacement,
+                function (err, result) {
+                    if (err) throw err;
+                    if (result.matchedCount === 0) {
+                        res.status(404).send();
+                    } else {
+                        res.status(204).send();
+                    }
+                    client.close()
+                });
+        });
+});
 
 module.exports = app;
