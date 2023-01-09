@@ -73,4 +73,22 @@ app.get("/susLocs", function (req, res) {
         });
 });
 
+app.delete("/susLocs/:id", function (req, res) {
+    MongoClient.connect(url,
+        function (err, client) {
+            if (err) throw err;
+            let db = client.db("susLocDB");
+            db.collection("locations").deleteOne({ _id: new ObjectId(req.body.id) },
+                function (err, result) {
+                    if (err) throw err;
+                    if (result.deletedCount === 1) {
+                        res.status(204).send();
+                    } else {
+                        res.status(404).send();
+                    }
+                    client.close();
+                });
+        });
+});
+
 module.exports = app;
