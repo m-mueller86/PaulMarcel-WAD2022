@@ -231,42 +231,36 @@ deleteLocation.addEventListener("reset", (e) => {
 });
 
 updateLocation.addEventListener("submit", (e) => {
+
     e.preventDefault();
+
     const name = updateLocation.name.value;
     const address = updateLocation.street.value;
     const number = updateLocation.housenumber.value;
     const postcode = updateLocation.postcode.value;
+    const id = updateLocation.locationId.value;
 
-    /*
-     *
-     * Genauer angucken!!
-     * 
-     */
-    let index = locations.findIndex(element => element.name == name ||
-        (element.address == address && element.number == number && element.postcode == plz));
-
-    if (index != -1) {
-        locations[index].marker.remove();
-        locations.splice(index, 1);
-        localStorage.setItem('locations', JSON.stringify(locationsWithoutMarker()));
-        document.getElementById("location-list").innerHTML = "";
-
-        getLongitudeLatitude(name, number, address, postcode);
-
-        /*
-         *
-         * Hier noch was ueberlegen, dass die nicht immer ausgefuehrt werden!!
-         * 
-         */
-        document.getElementById("mainpage").style.display = "block";
-        document.getElementById("updateDelete").style.display = "none";
-
-        locations.forEach(location => {
-            document.getElementById("location-list").innerHTML += `<li id="${location.name}">` + location.name + "</li><br>";
+    getLongitudeLatitude(name, number, address, postcode)
+        .then(data => {
+            data.id = id;
+            let payload = new URLSearchParams(data);
+            fetch("susLocs/" + id, {
+                method: "PUT",
+                body: payload
+            })
+                .then(res => {
+                    if (res.status === 204) {
+                        data.marker = L.marker([data.lat, data.lon])
+                        addToMap(data);
+                        delete data.marker;
+                        document.getElementById("mainpage").style.display = "block";
+                        document.getElementById("updateDelete").style.display = "none";
+                        setTimeout(refreshMap, 200);
+                    } else if (res.status === 404) {
+                        alert("Invalid ID!")
+                    }
+                })
         });
-    } else {
-        alert("Location does not exist!\nBetter add a new one.")
-    }
 })
 
 // Impressum
