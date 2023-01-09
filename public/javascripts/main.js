@@ -1,6 +1,6 @@
-window.onload = showOnlyLogin;
+window.onload = initialSetup;
 
-function showOnlyLogin() {
+function initialSetup() {
     document.getElementById("impressum-page").style.display = "none";
     document.getElementById("mainpage").style.display = "none";
     document.getElementById("add").style.display = "none";
@@ -13,8 +13,8 @@ function showOnlyLogin() {
                 location.marker = L.marker([location.lat, location.lon])
                 addToMap(location);
             })
-            addEventListenerToLocationsElements();
         });
+    addEventListenerToLocationsElements();
 }
 
 var map = L.map('map');
@@ -144,24 +144,20 @@ addForm.addEventListener("submit", (e) => {
         .then(data => {
             data.marker = L.marker([data.lat, data.lon])
             addToMap(data);
-            addEventListenerToLocationsElements();
             delete data.marker;
             let payload = new URLSearchParams(data);
             fetch("susLocs", {
                 method: "POST",
                 body: payload
+            }).then(res => {
+                if (res.status === 201) {
+                    document.getElementById("add").style.display = "none";
+                    document.getElementById("mainpage").style.display = "block";
+                }
             })
         });
 
-    /*
-     *
-     * Hier noch was ueberlegen, dass die nicht immer ausgefuehrt werden!!
-     * 
-     */
-    document.getElementById("add").style.display = "none";
-    document.getElementById("mainpage").style.display = "block";
 });
-
 function addToMap(location) {
     location.marker.addTo(map);
     document.getElementById("location-list").innerHTML += `<li id="${location.name}">` + location.name + "</li><br>";
