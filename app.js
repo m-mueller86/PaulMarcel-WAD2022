@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require("path");
 var bodyParser = require("body-parser");
+var ObjectId = require('mongodb').ObjectId;
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.post("/susLocs", function (req, res) {
 });
 
 app.get("/susLocs", function (req, res) {
+
     MongoClient.connect(url,
         function (err, client) {
             if (err) throw err;
@@ -90,6 +92,7 @@ app.delete("/susLocs/:id", function (req, res) {
                 });
         });
 });
+
 app.put("/susLocs/:id", function (req, res) {
     let query = { _id: new ObjectId(req.body.id) }
 
