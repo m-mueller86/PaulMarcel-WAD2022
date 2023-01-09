@@ -6,14 +6,15 @@ function showOnlyLogin() {
     document.getElementById("add").style.display = "none";
     document.getElementById("updateDelete").style.display = "none";
 
-    if (JSON.parse(localStorage.getItem('locations')) == null) {
-        noLocalStorage();
-    } else {
-        locations = [];
-        JSON.parse(localStorage.getItem('locations')).forEach(location => {
-            getLongitudeLatitude(location.name, location.number, location.address, location.postcode);
-        })
-    }
+    fetch("/susLocs")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(location => {
+                location.marker = L.marker([location.lat, location.lon])
+                addToMap(location);
+            })
+            addEventListenerToLocationsElements();
+        });
 }
 
 var map = L.map('map');
@@ -29,24 +30,23 @@ function initializeMap() {
 }
 
 
-function getLongitudeLatitude(locationName, locationNumber, locationAddress, locationPostcode) {
-    let httpRequest = new XMLHttpRequest();
+async function getLongitudeLatitude(locationName, locationNumber, locationAddress, locationPostcode) {
     const url = "http://nominatim.openstreetmap.org/search?street=" + locationNumber + "+" + locationAddress +
         "&postalcode=" + locationPostcode + "&format=json";
 
-    httpRequest.open("GET", url, true);
+    let response = await fetch(url);
+    let result = await response.json();
 
-    httpRequest.onload = function (e) {
-        let data = this.response;
-        let obj = JSON.parse(data);
+    let location = {
+        lat: result[0]["lat"],
+        lon: result[0]["lon"],
+        name: locationName,
+        address: locationAddress,
+        number: locationNumber,
+        postcode: locationPostcode
+    }
 
-        if (this.status === 200 && obj[0] != undefined) {
-            addToLocations(obj[0]["lat"], obj[0]["lon"], locationName, locationAddress, locationNumber, locationPostcode);
-        } else {
-            alert("Please check the address!")
-        }
-    };
-    httpRequest.send();
+    return location;
 }
 
 const loginForm = document.getElementById("login-form");
@@ -68,27 +68,27 @@ loginForm.addEventListener("submit", (e) => {
     const prePayload = new FormData(loginForm);
     const payload = new URLSearchParams(prePayload);
 
-    const result = fetch("/users", {
+    fetch("/users", {
         method: "POST",
         body: payload,
     })
-    .then(res => {
-        if(res.status === 200) {
-            return res.json();
-        } else if (res.status === 401) {
-            alert("Incorrect username or password!");
-            loginForm.username.value = "";
-            loginForm.password.value = "";
-        }
-    })
-    .then(data => {
-        if(data.isAdmin === "true") {
-            loginAsAdmina();
-        } else if (data.isAdmin === "false") {
-            loginAsGuest();
-        }      
-    })
-    .catch(err => console.log(err));
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else if (res.status === 401) {
+                alert("Incorrect username or password!");
+                loginForm.username.value = "";
+                loginForm.password.value = "";
+            }
+        })
+        .then(data => {
+            if (data.isAdmin === "true") {
+                loginAsAdmina();
+            } else if (data.isAdmin === "false") {
+                loginAsGuest();
+            }
+        })
+        .catch(err => console.log(err));
 
 });
 
@@ -140,7 +140,18 @@ addForm.addEventListener("submit", (e) => {
     const number = addForm.number.value;
     const postcode = addForm.postcode.value;
 
-    getLongitudeLatitude(name, number, address, postcode);
+    getLongitudeLatitude(name, number, address, postcode)
+        .then(data => {
+            data.marker = L.marker([data.lat, data.lon])
+            addToMap(data);
+            addEventListenerToLocationsElements();
+            delete data.marker;
+            let payload = new URLSearchParams(data);
+            fetch("susLocs", {
+                method: "POST",
+                body: payload
+            })
+        });
 
     /*
      *
@@ -182,20 +193,24 @@ cancelUpdate.addEventListener("click", (e) => {
 });
 
 function addEventListenerToLocationsElements() {
-    locations.forEach(location => {
-        document.getElementById(location.name).addEventListener("click", (e) => {
-            document.getElementById("mainpage").style.display = "none";
-            document.getElementById("updateDelete").style.display = "block";
-            document.getElementById("street").innerHTML = `<input type="text" value="${location.address}" name="street" required>` +
-                "<label>Straße</label>";
-            document.getElementById("housenumber").innerHTML = `<input type="text" value="${location.number}" name="housenumber" required>` +
-                "<label>Nr.</label";
-            document.getElementById("locationname").innerHTML = `<input type="text" value="${location.name}" name="name" required>` +
-                "<label>Name</label>";
-            document.getElementById("plz").innerHTML = `<input type="text" value="${location.postcode}" name="postcode" required>` +
-                "<label>PLZ</label>";
-        });
-    })
+
+    fetch("/susLocs")
+        .then(res => res.json())
+        .then(data => data.forEach(location => {
+            document.getElementById(location.name).addEventListener("click", (e) => {
+                document.getElementById("mainpage").style.display = "none";
+                document.getElementById("updateDelete").style.display = "block";
+                document.getElementById("street").innerHTML = `<input type="text" value="${location.address}" name="street" required>` +
+                    "<label>Straße</label>";
+                document.getElementById("housenumber").innerHTML = `<input type="text" value="${location.number}" name="housenumber" required>` +
+                    "<label>Nr.</label";
+                document.getElementById("locationname").innerHTML = `<input type="text" value="${location.name}" name="name" required>` +
+                    "<label>Name</label>";
+                document.getElementById("plz").innerHTML = `<input type="text" value="${location.postcode}" name="postcode" required>` +
+                    "<label>PLZ</label>";
+            });
+        }));
+
 }
 
 deleteLocation.addEventListener("reset", (e) => {
@@ -244,11 +259,11 @@ updateLocation.addEventListener("submit", (e) => {
 
         getLongitudeLatitude(name, number, address, postcode);
 
-    /*
-     *
-     * Hier noch was ueberlegen, dass die nicht immer ausgefuehrt werden!!
-     * 
-     */
+        /*
+         *
+         * Hier noch was ueberlegen, dass die nicht immer ausgefuehrt werden!!
+         * 
+         */
         document.getElementById("mainpage").style.display = "block";
         document.getElementById("updateDelete").style.display = "none";
 
@@ -292,11 +307,4 @@ function locationsWithoutMarker() {
         locationsWithoutMarker.push(newLocation);
     });
     return locationsWithoutMarker;
-}
-
-function noLocalStorage() {
-    addToLocations("52.4918007", "13.3917255", "Fairteiler Mehrgenerationenhaus Gneisenaustraße", "Gneisenaustraße", "12", "10961");
-    addToLocations("52.5418451", "13.3962424", "Fairteiler Olof-Palme-Zentrum", "Demminer Straße", "28", "13355");
-    addToLocations("52.481132", "13.5226441", "Fairteiler Ikarus Stadtteilzentrum Karlshorst", "Wandlitzstr.", "13", "10318");
-    addToLocations("52.5363004", "13.2662454", "Fairteiler Stadtteilbüro Siemensstadt", "Wattstr.", "13", "13629");
 }
