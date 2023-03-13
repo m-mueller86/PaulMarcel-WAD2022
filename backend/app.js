@@ -6,33 +6,41 @@ var ObjectId = require('mongodb').ObjectId;
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
 
-app.post("/users", function (req, res) {
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
-    let username = req.body.username;
-    let password = req.body.password;
 
-    MongoClient.connect(url,
-        function (err, client) {
+app.post('/users', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    MongoClient.connect(url, (err, client) => {
+        if (err) throw err;
+
+        const db = client.db('susLocDB');
+        db.collection('users').findOne({ userId: username }, (err, result) => {
             if (err) throw err;
-            let db = client.db("susLocDB");
-            db.collection("users").findOne({ userId: username },
-                function (err, result) {
-                    if (err) throw err;
-                    if (result !== null && password === result.password) {
-                        delete result.password;
-                        res.status(200).send(result);
-                    } else {
-                        res.status(401);
-                        res.end();
-                    }
-                    client.close();
-                });
+
+            if (result !== null && password === result.password) {
+                // login successful
+                delete result.password;
+                res.status(200).send(result);
+            } else {
+                // login failed
+                res.status(401).end();
+            }
+
+            client.close();
         });
+    });
 });
 
 app.post("/susLocs", function (req, res) {

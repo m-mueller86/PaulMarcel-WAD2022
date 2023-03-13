@@ -1,0 +1,23 @@
+.main-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.2)),
+        url(https://www.egofm.de/content/cache/blog/5806/230/7837ded24839fdf3/w822_markus-spiske-vyho3nnk8g8-unsplash_c_01.jpg) no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    height: 30%;
+    font-size: 40px;
+    padding: 40px;
+}
+
+h2 {
+    margin: 100px 0px 20px 880px;
+    font-size: 100px;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+    left: -4em;
+    bottom: 50px;
+    color: white;
+    font-family: 'Anton', sans-serif;
+}
