@@ -1,0 +1,19 @@
+nav {
+    background-color: rgb(15, 122, 122);
+    height: 100px;
+}
+
+.nav-button {
+    float: right;
+    width: 10%;
+    height: 100%;
+    font-size: x-large;
+    background-color: rgb(15, 122, 122);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .nav-button:hover {
+    background-color: rgb(10, 63, 63);
+  }

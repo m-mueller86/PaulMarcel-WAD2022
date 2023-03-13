@@ -1,4 +1,6 @@
 footer {
+    height: 97px;
+    padding-top: 5px;
     text-align: center;
     color: white;
     background-color: rgb(10, 63, 63);
