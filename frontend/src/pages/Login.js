@@ -35,11 +35,9 @@ const Login = () => {
             })
             .then(data => {
                 if (data !== undefined && data.isAdmin === "true") {
-                    console.log("Login as Admin");
                     setLoggedIn(true);
                     setUser(data);
                 } else if (data !== undefined && data.isAdmin === "false") {
-                    console.log("Login as guest");
                     setLoggedIn(true);
                     setUser(data);
                 }

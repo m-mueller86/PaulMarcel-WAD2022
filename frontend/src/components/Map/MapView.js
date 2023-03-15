@@ -1,5 +1,5 @@
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import React, { Component } from 'react';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { Icon } from 'leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -24,6 +24,7 @@ class MapView extends Component {
 
     render() {
         const { currentLocation, zoom } = this.state;
+        const { locations } = this.props;
 
         return (
             <main>
@@ -32,7 +33,13 @@ class MapView extends Component {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                     />
-                    <Marker position={[52.4918007, 13.3917255]} />
+                    {locations.map(location => (
+                        <Marker key={location._id} position={[location.lat, location.lon]}>
+                            <Popup>
+                                {location.name}
+                            </Popup>
+                        </Marker>
+                    ))}
                 </MapContainer>
             </main>
         );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../components/Auth/AuthContext";
 import MapView from "../components/Map/MapView";
 
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Main = () => {
     const { user, setUser } = useContext(AuthContext);
+    const [locations, setLocations] = useState([]);
     const [loggedIn, setLoggedIn] = useState(true);
     const navigate = useNavigate();
 
@@ -19,12 +20,19 @@ const Main = () => {
         navigate("/");
     }
 
+    useEffect(() => {
+        fetch('http://localhost:5000/susLocs')
+            .then(response => response.json())
+            .then(data => setLocations(data))
+            .catch(error => console.log(error));
+    }, []);
+
     return (
         <React.Fragment>
             <MainHeader user={user} />
             <Navigation handleLogout={handleLogout} />
-            <Aside />
-            <MapView />
+            <Aside locations={locations} />
+            <MapView locations={locations} />
             <Footer />
         </React.Fragment>
     );

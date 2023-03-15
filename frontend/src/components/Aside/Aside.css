@@ -1,8 +1,13 @@
 aside {
-    height: 629px;
-    width: 300px;
-    background-color: rgb(15, 122, 122);
-    color: white;
-    position: absolute;
-    padding-left: 20px;
-  }
+  height: 629px;
+  width: 300px;
+  background-color: rgb(15, 122, 122);
+  color: white;
+  position: absolute;
+  padding-left: 20px;
+}
+
+li {
+  padding-bottom: 20px;
+  cursor: pointer;
+}
