@@ -61,7 +61,7 @@ app.post("/susLocs", function (req, res) {
             db.collection("locations").insertOne(location,
                 function (err, result) {
                     if (err) throw err;
-                    res.status(201).send("Location: /susLocs/" + result.insertedId);
+                    res.status(201).json({ location: "/susLocs/" + result.insertedId });
                     client.close();
                 });
 

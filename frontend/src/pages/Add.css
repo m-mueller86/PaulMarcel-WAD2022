@@ -1,0 +1,17 @@
+.add-form .txt_field {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 60px 600px;
+}
+
+.add-main {
+    height: 576px;
+}
+
+.add-form input[type=submit] {
+    margin-left: 25%;
+    margin-right: 2%;
+}
+
+
+

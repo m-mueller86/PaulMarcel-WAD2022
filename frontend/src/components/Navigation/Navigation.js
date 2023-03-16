@@ -11,7 +11,7 @@ const Navigation = ({ handleLogout }) => {
     return (
         <nav>
             <button id="logout-button" className="nav-button" onClick={handleLogout}>Logout</button>
-            {user.isAdmin === "true" && <button id="add-button" className="nav-button">Add</button>}
+            {user.isAdmin === "true" && <button id="add-button" className="nav-button" onClick={() => navigate('/add')}>Add</button>}
         </nav>
     );
 };

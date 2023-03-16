@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-
 import LoginHeader from "../components/Header/LoginHeader";
 import Footer from "../components/Footer/Footer";
 
-import "./Login.css"
+import "./Login.css";
+import "../share/button.css";
+
 import AuthContext from "../components/Auth/AuthContext";
 
 const Login = () => {
@@ -78,7 +79,7 @@ const Login = () => {
                     />
                     <label>Password</label>
                 </div>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login" className="save-button" />
             </form>
             <Footer />
         </React.Fragment>

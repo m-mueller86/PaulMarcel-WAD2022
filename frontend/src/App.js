@@ -4,6 +4,7 @@ import AuthContext from './components/Auth/AuthContext';
 
 import Login from './pages/Login';
 import Main from './pages/Main';
+import Add from './pages/Add';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Login />} />
           <Route path="/main" exact element={<Main />} replace />
+          <Route path="/add" exact element={<Add />} replace />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
