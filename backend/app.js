@@ -11,11 +11,13 @@ app.use(bodyParser.json());
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/";
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-});
+  });
+  
 
 
 app.post('/users', (req, res) => {
@@ -88,7 +90,7 @@ app.delete("/susLocs/:id", function (req, res) {
         function (err, client) {
             if (err) throw err;
             let db = client.db("susLocDB");
-            db.collection("locations").deleteOne({ _id: new ObjectId(req.body.id) },
+            db.collection("locations").deleteOne({ _id: new ObjectId(req.params.id) },
                 function (err, result) {
                     if (err) throw err;
                     if (result.deletedCount === 1) {
