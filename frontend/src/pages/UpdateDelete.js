@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import UpdateDeleteHeader from "../components/Header/UpdateDeleteHeader";
@@ -12,11 +12,11 @@ const UpdateDelete = () => {
     const navigate = useNavigate();
 
 
-    const id = queryParams.get("id");
-    const name = queryParams.get("name");
-    const street = queryParams.get("street");
-    const housenumber = queryParams.get("housenumber");
-    const plz = queryParams.get("plz");
+    const [name, setName] = useState(queryParams.get("name"));
+    const [address, setAddress] = useState(queryParams.get("street"));
+    const [number, setNumber] = useState(queryParams.get("housenumber"));
+    const [postcode, setPostcode] = useState(queryParams.get("plz"));
+    const [id, setId] = useState(queryParams.get("id"));
 
     const handleCancel = () => {
         navigate("/main");
@@ -37,26 +37,72 @@ const UpdateDelete = () => {
             .catch(error => console.log(error));
     };
 
+    const handleUpdate = async (event) => {
+        event.preventDefault();
+
+        const url = `http://nominatim.openstreetmap.org/search?street=${number}+${address}&postalcode=${postcode}&format=json`;
+
+        try {
+
+            const geodataResponse = await fetch(url);
+            const data = await geodataResponse.json();
+
+            if (data && data.length > 0) {
+                const locationData = {
+                    latitude: data[0].lat,
+                    longitude: data[0].lon,
+                };
+
+                const putData = {
+                    id,
+                    name,
+                    address,
+                    number,
+                    postcode,
+                    lat: locationData.latitude,
+                    lon: locationData.longitude,
+                };
+
+                const response = await fetch(`http://localhost:5000/susLocs/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(putData),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to update location.");
+                }
+
+                navigate("/main");
+            } else {
+                throw new Error("Invalid Address!");
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    };
 
     return (
         <React.Fragment>
             <UpdateDeleteHeader />
             <main className="updateDelete-main">
-                <form className="updateDelete-form">
+                <form className="updateDelete-form" onSubmit={handleUpdate}>
                     <div className="txt_field">
-                        <input type="text" defaultValue={name} required />
+                        <input type="text" value={name} onChange={(event) => setName(event.target.value)} required />
                         <label>Location Name</label>
                     </div>
                     <div id="street" className="txt_field">
-                        <input type="text" defaultValue={street} required />
+                        <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} name="address" required />
                         <label>Straße</label>
                     </div>
                     <div id="housenumber" className="txt_field">
-                        <input type="text" defaultValue={housenumber} required />
+                        <input type="text" value={number} onChange={(event) => setNumber(event.target.value)} name="number" required />
                         <label>Hausnr.</label>
                     </div>
                     <div id="plz" className="txt_field">
-                        <input type="text" defaultValue={plz} required />
+                        <input type="text" value={postcode} onChange={(event) => setPostcode(event.target.value)} name="postcode" required />
                         <label>PLZ</label>
                     </div>
                     <div id="locationId" className="txt_field">

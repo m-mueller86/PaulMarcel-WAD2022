@@ -18,8 +18,6 @@ app.use(function(req, res, next) {
     next();
   });
   
-
-
 app.post('/users', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;

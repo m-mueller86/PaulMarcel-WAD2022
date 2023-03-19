@@ -50,7 +50,6 @@ const Add = () => {
                 if (!postResponse.ok) {
                     throw new Error("Failed to save location.");
                 }
-
                 navigate("/main");
             } else {
                 throw new Error("Invalid Address!");
