@@ -12,27 +12,32 @@ const Main = () => {
     const { user, setUser } = useContext(AuthContext);
     const [locations, setLocations] = useState([]);
     const [loggedIn, setLoggedIn] = useState(true);
+    const [hoveredLocation, setHoveredLocation] = useState(null);
     const navigate = useNavigate();
 
     const handleLogout = () => {
         setLoggedIn(false);
         setUser(null);
         navigate("/");
-    }
+    };
+
+    const handleLocationHover = (location) => {
+        setHoveredLocation(location);
+    };
 
     useEffect(() => {
-        fetch('http://localhost:5000/susLocs')
-            .then(response => response.json())
-            .then(data => setLocations(data))
-            .catch(error => console.log(error));
+        fetch("http://localhost:5000/susLocs")
+            .then((response) => response.json())
+            .then((data) => setLocations(data))
+            .catch((error) => console.log(error));
     }, []);
 
     return (
         <React.Fragment>
             <MainHeader user={user} />
             <Navigation handleLogout={handleLogout} />
-            <Aside locations={locations} />
-            <MapView locations={locations} />
+            <Aside locations={locations} handleLocationHover={handleLocationHover} />
+            <MapView locations={locations} hoveredLocation={hoveredLocation} />
             <Footer />
         </React.Fragment>
     );

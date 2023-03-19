@@ -5,7 +5,7 @@ import "./MainHeader.css"
 const MainHeader = ({ user }) => {
     return (
         <header className="main-header">
-            <h2>Welcome Back {user.firstName}!</h2>
+            <h2 className="main-header-h2">Welcome Back {user.firstName}!</h2>
         </header>
     );
 };

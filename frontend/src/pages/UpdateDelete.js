@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import UpdateDeleteHeader from "../components/Header/UpdateDeleteHeader";
+import AuthContext from "../components/Auth/AuthContext"
 
 import "./UpdateDelete.css";
 import "../share/button.css";
@@ -10,6 +11,7 @@ const UpdateDelete = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
 
 
     const [name, setName] = useState(queryParams.get("name"));
@@ -109,9 +111,10 @@ const UpdateDelete = () => {
                         <input type="text" defaultValue={id} />
                         <label>Location Id</label>
                     </div>
-                    <input id="update" type="submit" value="Update" className="save-button" />
-                    <input id="delete" type="reset" value="Delete" className="delete-button" onClick={handleDelete} />
-                    <input id="cancel-update" type="cancel" value="Cancel" className="cancel-button" onClick={handleCancel} />
+                    {user.isAdmin === "true" && <input id="update" type="submit" value="Update" className="save-button" />}
+                    {user.isAdmin === "true" && <input id="delete" type="reset" value="Delete" className="delete-button" onClick={handleDelete} />}
+                    {user.isAdmin === "true" && <input id="cancel-update" type="cancel" value="Go Back" className="cancel-button-admin" onClick={handleCancel} />}
+                    {user.isAdmin === "false" && <input id="cancel-update" type="cancel" value="Go Back" className="cancel-button-guest" onClick={handleCancel} />}
                 </form>
             </main>
             <Footer />

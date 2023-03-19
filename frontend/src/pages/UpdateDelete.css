@@ -12,3 +12,17 @@
     margin-left: 25%;
 }
 
+.cancel-button-guest {
+    margin-left: 43%;
+    width: 15%;
+    height: 50px;
+    border: 1px solid;
+    background: rgb(15, 122, 122);
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
